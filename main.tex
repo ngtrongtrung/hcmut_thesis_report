@@ -1,0 +1,169 @@
+\documentclass[a4paper,12pt]{report}
+% times new roman font
+\usepackage{fontspec}
+\setmainfont{Times New Roman}
+\usepackage[vietnamese=nohyphenation]{hyphsubst}
+\usepackage[vietnamese]{babel}
+
+%graphic
+\usepackage{graphicx}
+\graphicspath{ {images/} }
+\usepackage[export]{adjustbox}
+\usepackage[labelfont={bf,it},textfont={it},font=small,justification=centering]{caption}
+\usepackage{subcaption}
+% set margin page
+\usepackage{geometry}
+\geometry{a4paper,left=3cm,right=2cm,top=3cm,bottom=2cm}
+
+%other library
+\usepackage{amsfonts,amsmath,amssymb,amsthm,mathtools,commath}
+\usepackage{subfiles}
+\usepackage{setspace}
+\usepackage{array}
+\usepackage{multirow}
+\usepackage[explicit]{titlesec}
+\usepackage{lastpage}
+\usepackage{biblatex}
+\usepackage{colortbl, xcolor}
+\usepackage{hyperref}
+\usepackage{float}
+\usepackage{longtable}
+\usepackage{csquotes}
+\addbibresource{references.bib}
+% \usepackage[acronym]{glossaries}
+% \makeglossaries
+\usepackage{etoolbox}
+\usepackage[most]{tcolorbox}
+\usepackage{listings}
+\usepackage{rotating}
+%hyperlink format
+\hypersetup{
+    colorlinks=true,
+    linkcolor=black,
+    filecolor=black,      
+    urlcolor=blue,
+    pdftitle={Báo cáo luận văn tốt nghiệp},
+    citecolor=black,
+}
+
+
+%format page style
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\rhead{\leftmark}
+\rfoot{\centering\thepage}
+% \rfoot{\thepage/\pageref{LastPage}}
+%graphic
+\usepackage{tikz}
+\usetikzlibrary{calc}
+\usetikzlibrary{arrows.meta}
+
+%setting 
+\setlength{\parindent}{0.75cm}
+\setlength{\parskip}{3pt}
+\setlength{\headheight}{15.1pt}
+
+%line spacing
+\renewcommand{\baselinestretch}{1.15}
+%
+\addto\captionsvietnamese{%
+  \renewcommand{\contentsname}{MỤC LỤC}
+  \renewcommand{\listfigurename}{DANH SÁCH HÌNH ẢNH}
+  \renewcommand{\listtablename}{DANH SÁCH BẢNG}
+}
+
+%format title
+
+\titleformat{\chapter}[display]
+  {\normalfont\Large}
+  {\flushright\fontsize{30}{0}\textbf{{\Huge\chaptername}~\thechapter\vskip0pt\rule{\textwidth}{2pt}}}{0pt}
+  {\filcenter\fontsize{20}{0}{\uppercase{\textbf{#1}}}\vskip30pt}\titlespacing*{\chapter}
+  {0pt}{-40pt}{0pt}
+
+
+\renewcommand{\arraystretch}{1.2}
+\newcommand{\buttonlabel}[1]{``\textit{#1}"}
+\newcommand{\doublequotation}[1]{``#1"}
+\newcommand{\step}[1]{\textit{Bước #1:}}
+
+
+\newtcolorbox{htmlcommandbox}{
+enhanced,
+boxrule=0pt,frame hidden,
+colback=gray!7!white,
+sharp corners
+}
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{RGB}{245,245,245}
+
+\lstdefinestyle{mystyle}{
+    backgroundcolor=\color{backcolour},   
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{magenta},
+    stringstyle=\color{codepurple},
+    basicstyle=\footnotesize\ttfamily,
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=true,                 
+    numbers=none,                    
+    numbersep=5pt,                  
+    numberstyle=\tiny\color{codegray},
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=2
+}
+
+\definecolor{darkgray}{rgb}{.4,.4,.4}
+\definecolor{purple}{rgb}{0.65, 0.12, 0.82}
+
+\lstdefinelanguage{JavaScript}{
+keywords={typeof, new, true, false, catch, function, return, null, catch, switch, var, if, in, while, do, else, case, break,const, export,default},
+keywordstyle=\color{blue}\bfseries,
+ndkeywords={class, export, boolean, throw, implements, import, this},
+ndkeywordstyle=\color{darkgray}\bfseries,
+identifierstyle=\color{black},
+sensitive=false,
+comment=[l]{//},
+morecomment=[s]{/*}{*/},
+commentstyle=\color{purple}\ttfamily,
+stringstyle=\color{red}\ttfamily,
+morestring=[b]',
+morestring=[b]"
+}
+\lstset{style=mystyle}
+\newcommand*{\newbullet}{$\vcenter{\hbox{\tiny$\bullet$}}$}
+\newcommand*{\example}{\textit{Ví dụ}}
+\begin{document}
+\pagenumbering{roman}
+\subfile{sections/title_page.tex}
+\subfile{sections/guarantee.tex}
+\subfile{sections/thanks.tex}
+\subfile{sections/summary.tex}
+\subfile{sections/chapter_summary.tex}
+\tableofcontents
+\addcontentsline{toc}{chapter}{Danh sách hình ảnh}
+\listoffigures
+\addcontentsline{toc}{chapter}{Danh sách bảng}
+\listoftables
+
+% \addcontentsline{toc}{chapter}{Danh mục từ viết tắt}
+% \printglossary[type=\acronymtype, title={DANH MỤC TỪ VIẾT TẮT}]
+
+
+
+\subfile{sections/c1_gioi_thieu.tex}
+\subfile{sections/c2_kien_thuc_nen_tang.tex}
+\subfile{sections/c3_phan_tich_he_thong.tex}
+\subfile{sections/c4_thiet_ke_he_thong.tex}
+\subfile{sections/c5_hien_thuc_he_thong.tex}
+\subfile{sections/c6_trien_khai_danh_gia.tex}
+\subfile{sections/c7_ket_luan_huong_phat_trien.tex}
+
+\nocite{*}
+\printbibliography[heading=bibintoc,title={TÀI LIỆU THAM KHẢO}]
+\end{document}
